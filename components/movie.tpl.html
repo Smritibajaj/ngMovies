@@ -1,0 +1,53 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p>
+            <strong>ngMovies</strong>
+        </p>
+        <md-button ng-click="">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Top TV Series
+            <!--nav bar element-->
+        </md-button>
+
+        <md-button ng-click="">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Top Ten Movies
+            <!--nav bar element-->
+        </md-button>
+        <md-button ng-click="">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Top Romantic Movies
+            <!--nav bar element-->
+        </md-button>
+        <md-button ng-click="">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Top Comedy Movies
+            <!--nav bar element-->
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content class="md-padding" layout="row" layout-wrap>
+<md-card ng-repeat="movie in vm.movies" flex="30"  class="movie">
+    <div>
+    <img ng-src="http://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="">
+    <md-card-content>
+        <div class="movie-info" ng-show="!showRating">
+            <h2 class="md-title"> {{ movie.title }} </h2>
+            <p> <md-icon class="mdi mdi-calendar-today"></md-icon>{{ movie.release_date | date: "longDate"}} </p>
+            <p> <md-icon class="mdi mdi-tooltip-text"></md-icon>{{ movie.overview }} </p>
+        </div>
+
+        <div class="movie-popularity" ng-show="showRating">
+            <p><md-icon class="mdi mdi-heart"></md-icon> {{ movie.popularity }} </p>
+            <p><md-icon class="mdi mdi-account-star"></md-icon> {{ movie.vote_average }} </p>
+            <p><md-icon class="mdi mdi-comment-account"></md-icon> {{ movie.vote_count }} </p>
+        </div>
+
+        <div layout="row">
+            <md-button ng-click="showRating = true">Rating</md-button>
+            <md-button ng-click="showRating = false"> Details</md-button>
+        </div>
+    </div>
+    </md-card-content>
+</md-card>
+</md-content>
